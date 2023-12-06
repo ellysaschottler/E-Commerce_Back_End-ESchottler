@@ -7,7 +7,10 @@ router.get('/', (req, res) => {
   // find all categories
   // be sure to include its associated Products ** check this
 
-  Category.findAll().then((categoryData) => {
+  Category.findAll({
+    include: [{ model: Product }],
+  }
+  ).then((categoryData) => {
   res.json(categoryData);
   });
 });
