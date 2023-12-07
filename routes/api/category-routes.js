@@ -17,8 +17,8 @@ router.get('/:id', (req, res) => {
   Category.findByPk(req.params.id, 
     {
       include: [{ model: Product }],
-    }
-    ).then((categoryData) => {
+    })
+    .then((categoryData) => {
   res.json(categoryData);
   });
 });
@@ -35,7 +35,7 @@ router.put('/:id', (req, res) => {
   // update a category by its `id` value
   Category.update(
     {
-      category_name: req.body.category,
+      category_name: req.body.category_name,
     },
     {
       where: {

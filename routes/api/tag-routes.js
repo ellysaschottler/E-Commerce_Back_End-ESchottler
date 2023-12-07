@@ -18,8 +18,8 @@ router.get('/:id', (req, res) => {
   Tag.findByPk(req.params.id,
     {
       include: [{ model: Product, through: ProductTag }],
-    }
-  ).then((tagData) => {
+    })
+  .then((tagData) => {
     res.json(tagData)
   });
 });
@@ -44,12 +44,15 @@ router.put('/:id', (req, res) => {
       }
     }
   )
+  .then((updatedTag) => {
+    res.json(updatedTag)
+  })
 });
 
 router.delete('/:id', (req, res) => {
   // delete on tag by its `id` value
   Tag.destroy({
-    Where: {
+    where: {
       id: req.params.id
     }
   })
